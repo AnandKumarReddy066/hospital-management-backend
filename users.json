@@ -1,0 +1,17 @@
+[
+  {
+    "_id": "69b1a4ae8a3a5bd9dd25d4d1",
+    "email": "test25@gmail.com",
+    "role": "patient"
+  },
+  {
+    "_id": "69b1a5d78390362bbd21f8f3",
+    "email": "rakesh@gmail.com",
+    "role": "patient"
+  },
+  {
+    "_id": "69b1a6ab8390362bbd21f8fa",
+    "email": "patient@hsptl.com",
+    "role": "patient"
+  }
+]

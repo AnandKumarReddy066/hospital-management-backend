@@ -17,6 +17,21 @@ router.get('/', async (req, res, next) => {
       .populate('user', 'firstName lastName email profileImage')
       .skip((page - 1) * limit)
       .limit(Number(limit));
+
+    if (doctors.length === 0) {
+      // Provide mock doctors if DB is empty
+      return res.json({
+        success: true,
+        data: {
+          doctors: [
+            { _id: 'mock_doc_1', name: { first: 'Sarah', last: 'Jenning' }, department: 'Cardiology', specialization: 'Heart Surgeon' },
+            { _id: 'mock_doc_2', name: { first: 'Michael', last: 'Chen' }, department: 'Neurology', specialization: 'Brain Specialist' },
+            { _id: 'mock_doc_3', name: { first: 'Emily', last: 'Sato' }, department: 'Pediatrics', specialization: 'Child Care' },
+          ]
+        }
+      });
+    }
+
     res.json({ success: true, data: { doctors } });
   } catch(err) { next(err); }
 });

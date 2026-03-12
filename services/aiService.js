@@ -1,31 +1,34 @@
 /**
  * services/aiService.js
- * OpenAI integration helper — used across AI modules.
+ * Google Gemini integration helper — used across AI modules.
  */
 
-const { OpenAI } = require('openai');
+const { GoogleGenerativeAI } = require('@google/generative-ai');
 const logger = require('../utils/logger');
 
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY || 'sk-dummy-key-for-local-dev-123' });
+const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY || '');
 
 /**
- * Calls GPT-4 with a system prompt and user message.
+ * Calls Gemini with a system prompt and user message.
+ * History is mapped to the Gemini multi-turn format (role: 'user' | 'model').
  */
 exports.chat = async (systemPrompt, userMessage, history = []) => {
-  const messages = [
-    { role: 'system', content: systemPrompt },
-    ...history,
-    { role: 'user', content: userMessage },
-  ];
-
-  const response = await openai.chat.completions.create({
-    model: 'gpt-4o',
-    messages,
-    temperature: 0.3,
-    max_tokens: 1024,
+  const model = genAI.getGenerativeModel({
+    model: 'gemini-2.5-flash',
   });
 
-  return response.choices[0].message.content;
+  // Map OpenAI-style history to Gemini format
+  const geminiHistory = history.map(msg => ({
+    role: msg.role === 'assistant' ? 'model' : 'user',
+    parts: [{ text: msg.content }],
+  }));
+
+  const chat = model.startChat({ history: geminiHistory });
+
+  // Prepend system prompt to the user message for compatibility
+  const fullMessage = `${systemPrompt}\n\n${userMessage}`;
+  const result = await chat.sendMessage(fullMessage);
+  return result.response.text();
 };
 
 /**
@@ -38,7 +41,8 @@ exports.checkDrugInteraction = async (drugs) => {
 
   const result = await exports.chat('You are a medical AI assistant.', prompt);
   try {
-    return JSON.parse(result);
+    const cleaned = result.replace(/```json/g, '').replace(/```/g, '').trim();
+    return JSON.parse(cleaned);
   } catch {
     return { raw: result };
   }

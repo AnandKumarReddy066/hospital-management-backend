@@ -16,7 +16,8 @@ router.use(protect);
 // Symptom-based preliminary diagnosis
 router.post('/symptoms', async (req, res, next) => {
   try {
-    const result = await aiDiagnostics.analyseSymptoms(req.body.symptoms);
+    const { symptoms, language } = req.body;
+    const result = await aiDiagnostics.analyseSymptoms(symptoms, language);
     res.json({ success: true, data: result });
   } catch(err) { next(err); }
 });

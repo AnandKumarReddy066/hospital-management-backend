@@ -9,8 +9,8 @@ const { protect, authorize } = require('../middleware/auth');
 
 router.use(protect);
 
-router.post('/', authorize('patient'), appointmentController.bookAppointment);
-router.get('/', authorize('admin', 'doctor', 'nurse', 'receptionist'), appointmentController.getAllAppointments);
+router.post('/', authorize('patient', 'staff', 'receptionist'), appointmentController.bookAppointment);
+router.get('/', authorize('admin', 'doctor', 'nurse', 'receptionist', 'staff'), appointmentController.getAllAppointments);
 router.get('/me', appointmentController.getMyAppointments);
 router.patch('/:id/status', authorize('admin', 'doctor', 'receptionist'), appointmentController.updateAppointmentStatus);
 

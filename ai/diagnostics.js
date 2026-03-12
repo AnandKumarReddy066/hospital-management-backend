@@ -25,13 +25,14 @@ Example JSON output:
 /**
  * analyseSymptoms — Takes a symptom description string and returns AI analysis.
  * @param {string} symptoms
+ * @param {string} language
  */
-exports.analyseSymptoms = async (symptoms) => {
+exports.analyseSymptoms = async (symptoms, language = 'en-US') => {
   if (!symptoms || symptoms.trim() === '') {
     throw new Error('Symptom description is required');
   }
 
-  const userMessage = `Patient symptoms: "${symptoms}"`;
+  const userMessage = `Patient symptoms: "${symptoms}"\n\nProvide the 'condition' and 'advice' values in ${language}. "urgency" and "recommendedDepartment" MUST remain in English as they are used programmatically.`;
 
   const rawResponse = await aiService.chat(SYSTEM_PROMPT, userMessage);
 

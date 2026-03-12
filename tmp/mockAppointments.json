@@ -1,0 +1,108 @@
+[
+  {
+    "_id": "mock_1",
+    "patientId": "mock_p1",
+    "patient": {
+      "firstName": "Ravi",
+      "lastName": "Kumar"
+    },
+    "doctorId": "mock_doc_1",
+    "reason": "High Fever",
+    "status": "scheduled",
+    "queuePosition": 1,
+    "time": {
+      "start": "09:00 AM"
+    },
+    "date": "2026-03-12"
+  },
+  {
+    "_id": "mock_2",
+    "patientId": "mock_p2",
+    "patient": {
+      "firstName": "Priya",
+      "lastName": "Sharma"
+    },
+    "doctorId": "mock_doc_1",
+    "reason": "Stomach Ache",
+    "status": "scheduled",
+    "queuePosition": 2,
+    "time": {
+      "start": "09:30 AM"
+    },
+    "date": "2026-03-12"
+  },
+  {
+    "_id": "mock_3",
+    "patientId": "mock_p3",
+    "patient": {
+      "firstName": "Anand",
+      "lastName": "Raju"
+    },
+    "doctorId": "mock_doc_1",
+    "reason": "Chest Pain",
+    "status": "scheduled",
+    "queuePosition": 3,
+    "time": {
+      "start": "10:00 AM"
+    },
+    "date": "2026-03-12"
+  },
+  {
+    "_id": "mock_4",
+    "patientId": "mock_p4",
+    "patient": {
+      "firstName": "Lakshmi",
+      "lastName": "Devi"
+    },
+    "doctorId": "mock_doc_1",
+    "reason": "Joint Pain",
+    "status": "scheduled",
+    "queuePosition": 4,
+    "time": {
+      "start": "10:30 AM"
+    },
+    "date": "2026-03-12"
+  },
+  {
+    "_id": "mock_5",
+    "patientId": "mock_p5",
+    "patient": {
+      "firstName": "Suresh",
+      "lastName": "Babu"
+    },
+    "doctorId": "mock_doc_1",
+    "reason": "Diabetes Checkup",
+    "status": "scheduled",
+    "queuePosition": 5,
+    "time": {
+      "start": "11:00 AM"
+    },
+    "date": "2026-03-12"
+  },
+  {
+    "_id": "mock_appt_1773301196834",
+    "patientId": "69b1a4ae8a3a5bd9dd25d4d1",
+    "patient": "69b1a4ae8a3a5bd9dd25d4d1",
+    "doctor": {
+      "_id": "mock_doc_1",
+      "name": {
+        "first": "Sarah",
+        "last": "Jenning"
+      },
+      "specialization": "Heart Surgeon",
+      "consultationFee": 500
+    },
+    "doctorId": "mock_doc_1",
+    "date": "2026-03-20",
+    "time": {
+      "start": "10:03"
+    },
+    "type": "in-person",
+    "reason": "fever",
+    "status": "confirmed",
+    "queuePosition": 8,
+    "estimatedWaitMinutes": 15,
+    "createdAt": "2026-03-12T07:39:56.834Z",
+    "appointmentDate": "2026-03-20T00:00:00.000Z"
+  }
+]
